@@ -28,6 +28,8 @@ import com.example.android.marsrealestate.network.MarsProperty
 import com.example.android.marsrealestate.overview.MarsApiStatus
 import com.example.android.marsrealestate.overview.PhotoGridAdapter
 
+
+// 데이터가 변경될 때 자동으로 실행되는 코드들
 @BindingAdapter("imageUrl") // connected with grid_view_item.xml, 40 line
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
@@ -36,10 +38,10 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
         Glide.with(imgView.context)
             .load(imgUri)
             .apply(
-                RequestOptions()
-                .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken_image))
-            .into(imgView)
+                RequestOptions()    // 에러, 로딩 등 상태 옵션 사용
+                .placeholder(R.drawable.loading_animation) // 로딩 화면
+                .error(R.drawable.ic_broken_image)) // 에러 발생시 화면
+            .into(imgView) // 이미지 넣을 view
     }
 }
 

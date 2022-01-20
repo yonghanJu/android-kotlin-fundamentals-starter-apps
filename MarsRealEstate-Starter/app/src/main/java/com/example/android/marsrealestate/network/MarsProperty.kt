@@ -17,11 +17,16 @@
 
 package com.example.android.marsrealestate.network
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize // 직렬화, Safe Args를 이용해 데이터 전달을 가능케 함
 data class MarsProperty(
     val id: String,
     @Json(name = "img_src") val imgSrcUrl: String,
     val type: String,
     val price: Double
-)
+): Parcelable {                         // 직렬화
+    val isRental get() = type == "rent" // get() 함수 사용법!!,item.xml 60line 확인
+}
